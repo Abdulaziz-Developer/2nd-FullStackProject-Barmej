@@ -90,6 +90,10 @@ let stories = [
 
 let submit = document.getElementById("submit");
 let cityfield = document.getElementById("cityfield");
+cityfield.addEventListener("click", function () {
+  alert("The Countries are Kuwait , Saudi Arabia and Bahrain");
+});
+
 submit.addEventListener("click", (e) => {
   e.preventDefault();
   document.getElementsByClassName("widgets")[0].innerHTML = null;
