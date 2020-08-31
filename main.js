@@ -90,15 +90,18 @@ let stories = [
 
 let submit = document.getElementById("submit");
 let cityfield = document.getElementById("cityfield");
-cityfield.addEventListener("click", function () {
-  alert("The Countries are Kuwait , Saudi Arabia and Bahrain");
-});
-
+let searchResult;
 submit.addEventListener("click", (e) => {
   e.preventDefault();
   document.getElementsByClassName("widgets")[0].innerHTML = null;
+  document.getElementById("WrongSent").style.display = "none";
+  if (searchResult == false) {
+    document.getElementById("WrongSent").style.display = "block";
+  }
   for (let i = 0; i < pets.length; i++) {
-    if (cityfield.value.toUpperCase() == pets[i].location.toUpperCase()) {
+    if (
+      cityfield.value.toUpperCase().includes(pets[i].location.toUpperCase())
+    ) {
       let card = `<div class="widget">
       <div class="widget__image">
         <img src="${pets[i].img}" alt="pet image" />
@@ -109,7 +112,11 @@ submit.addEventListener("click", (e) => {
         <p>${pets[i].location}</p>
       </div>
     </div>`;
+      document.getElementById("WrongSent").style.display = "none";
       document.getElementsByClassName("widgets")[0].innerHTML += card;
+      searchResult = true;
+    } else {
+      searchResult = false;
     }
   }
 });
@@ -146,8 +153,10 @@ for (i = 0; i < _ReadMore.length; i++) {
   _ReadMore[i].addEventListener("click", function () {
     let para = this.nextElementSibling;
     if (para.style.maxHeight) {
+      this.innerHTML = "Read More";
       para.style.maxHeight = null;
     } else {
+      this.innerHTML = "Show less";
       para.style.maxHeight = para.scrollHeight + "px";
     }
   });

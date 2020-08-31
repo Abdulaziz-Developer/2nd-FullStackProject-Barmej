@@ -292,6 +292,11 @@ header ul li a {
 .widget__desc h4 {
   font-weight: bold;
 }
+#WrongSent {
+  display: none;
+  font-size: 40px;
+  margin-top: 40px;
+}
 
 /*----------------------------------------------*/
 
